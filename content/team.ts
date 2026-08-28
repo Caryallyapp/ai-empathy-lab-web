@@ -13,10 +13,9 @@
  *   photo-5  Maqbool Khan      maqboolkhan.com
  *   photo-6  Jeff Brooks       jeffreyallenbrooks.github.io
  *   photo-7  Danylo Provodov   confirmed by Danylo
+ *   photo-8  Illia Orel        supplied directly by Danylo
  * Do NOT reorder these by the document's image order: the images are NOT
  * stored in team order, which is what produced an earlier wrong mapping.
- * Illia has no photo in the set and falls back to an initials avatar,
- * which is a valid state, not a broken one.
  * Sources are public/team/photo-1.jpg … photo-7.jpg, square-cropped from
  * the originals.
  */
@@ -30,6 +29,7 @@ const PHOTO_BY_ID: Record<string, string> = {
   "maqbool-khan": "/team/photo-5.jpg",
   "jeff-brooks": "/team/photo-6.jpg",
   "danylo-provodov": "/team/photo-7.jpg",
+  "illia-orel": "/team/photo-8.jpg",
 };
 
 /** The photo for a person, or undefined so the card falls back to initials. */
@@ -212,11 +212,11 @@ export const TEAM: Person[] = [
     hue: "olive",
   },
   {
-    id: "illia",
-    // PLACEHOLDER — full name, bio, and links pending.
-    name: "Illia",
+    id: "illia-orel",
+    name: "Illia Orel",
     role: "Software Developer",
     group: "engineering",
+    // PLACEHOLDER — bio and profile links still pending.
     bio: "Bio coming soon.",
     links: [],
     placeholder: true,
