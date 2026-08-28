@@ -1,0 +1,183 @@
+/* Floating navbar. Fixed rather than sticky so it takes NO space in the
+   page flow, letting the hero gradient run to the very top of the viewport
+   with the bar floating over it. Pages reserve room with --ael-nav-clearance.
+   The card itself is opaque surface, never transparent. */
+.zone {
+  position: fixed;
+  top: var(--ael-nav-gap);
+  left: 0;
+  right: 0;
+  z-index: var(--ael-z-sticky);
+  transition: transform var(--ael-dur-standard) var(--ael-ease);
+}
+
+.zoneHidden {
+  transform: translateY(calc(-100% - 1.5rem));
+}
+
+.zoneInner {
+  position: relative;
+}
+
+.bar {
+  position: relative; /* the nav centers on the bar itself, see .nav */
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: var(--ael-nav-h);
+  /* Right padding equals the CTA pill's vertical inset ((72 - 40) / 2),
+     so the pill sits at the same distance from the bar's end as from its
+     top and bottom edges. */
+  padding-inline: 1.625rem calc(1rem - 1px);
+  background: var(--ael-bg-surface);
+  border: 1px solid var(--ael-border-hairline);
+  border-radius: var(--ael-radius-pill);
+  box-shadow: var(--ael-shadow-md);
+}
+
+.brand {
+  /* Lockup proportions measured from the brand kit's
+     lockup-horizontal-4x.png: mark height = 1.08x the wordmark em,
+     gap = 0.5em, arch feet on the text baseline. Wordmark 20px means
+     mark 22px and gap 10px. */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  text-decoration: none;
+  flex: none;
+  /* Tap target: the lockup is 27px of text; this makes the target ~44px
+     without moving the bar's layout. */
+  padding-block: 0.55rem;
+  margin-block: -0.55rem;
+}
+
+.wordmark {
+  font: 700 1.25rem/1 var(--ael-font-display);
+  letter-spacing: -0.008em;
+  color: var(--ael-text-primary);
+}
+
+/* Geometrically centered on the bar. A flex margin: auto would centre the
+   nav in the leftover space between the unequal brand and CTA clusters,
+   leaving it optically adrift left of the middle. */
+.nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.navLink {
+  font: 500 0.95rem/1 var(--ael-font-text);
+  color: var(--ael-text-secondary);
+  text-decoration: none;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--ael-radius-pill);
+  transition:
+    color var(--ael-dur-micro) var(--ael-ease),
+    background-color var(--ael-dur-micro) var(--ael-ease);
+}
+
+.navLink:hover {
+  color: var(--ael-text-primary);
+  background: var(--ael-bg-sunken);
+}
+
+.navLink[aria-current="page"] {
+  color: var(--ael-text-link);
+  font-weight: 600;
+}
+
+.side {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+  margin-left: auto;
+}
+
+.cta {
+  height: var(--ael-control-h-platform);
+  padding: 0 1.15rem;
+  font-size: 0.9rem;
+  border-radius: var(--ael-radius-pill);
+}
+
+.menuBtn {
+  display: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ael-radius-pill);
+  color: var(--ael-text-secondary);
+}
+
+.menuBtn:hover {
+  color: var(--ael-text-primary);
+  background: var(--ael-bg-sunken);
+}
+
+/* Between the hamburger point and ~1099px there is not enough slack for
+   absolute centering — the nav would slide under the brand. Normal flow
+   centres it in the remaining space instead. */
+@media (max-width: 1099px) {
+  .nav {
+    position: static;
+    transform: none;
+    margin-inline: auto;
+  }
+}
+
+.mobileNav {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .nav {
+    display: none;
+  }
+  .cta {
+    display: none;
+  }
+  .menuBtn {
+    display: grid;
+  }
+  .bar {
+    padding-inline: 1.4rem 0.9rem;
+  }
+  .mobileNav {
+    position: absolute;
+    left: clamp(1rem, 2.5vw, 3rem);
+    right: clamp(1rem, 2.5vw, 3rem);
+    top: calc(100% + 0.5rem);
+    display: grid;
+    padding: 0.75rem 1.25rem;
+    background: var(--ael-bg-surface);
+    border: 1px solid var(--ael-border-hairline);
+    border-radius: var(--ael-radius-panel);
+    box-shadow: var(--ael-shadow-lg);
+  }
+  .mobileCta {
+    margin-block: 0.9rem 0.4rem;
+    width: 100%;
+  }
+  .mobileLink {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font: 500 1.02rem/1 var(--ael-font-text);
+    color: var(--ael-text-primary);
+    text-decoration: none;
+    padding: 0.9rem 0.25rem;
+    border-bottom: 1px solid var(--ael-rule);
+  }
+  .mobileLink:last-child {
+    border-bottom: 0;
+  }
+  .mobileLink[aria-current="page"] {
+    color: var(--ael-text-link);
+  }
+}

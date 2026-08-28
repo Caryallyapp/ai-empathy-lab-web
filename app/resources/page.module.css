@@ -1,0 +1,55 @@
+.upcoming {
+  display: grid;
+}
+.upcomingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--ael-rule);
+  padding-block: 1.05rem;
+}
+.upcomingTitle {
+  font: 500 1.02rem/1.4 var(--ael-font-text);
+  color: var(--ael-text-secondary);
+}
+.platformIntro {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+  align-content: start;
+}
+.platformLede {
+  color: var(--ael-text-secondary);
+  max-width: var(--ael-measure);
+}
+.platformActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 0.6rem;
+}
+/* What the platform does. No container: a card here reads as a component
+   rather than part of the page. Instead it takes the site's own list rhythm,
+   a mono index on a mini meta rail, the same shape the news dates and
+   publication years sit in. */
+.platformList {
+  display: grid;
+  align-content: start;
+}
+.platformPoint {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0 0.85rem;
+  align-items: baseline;
+  border-top: 1px solid var(--ael-rule);
+  padding-block: 1.15rem;
+  font: 500 0.95rem/1.6 var(--ael-font-text);
+  color: var(--ael-text-secondary);
+}
+.platformNum {
+  font: 500 0.78rem/1.6 var(--ael-font-mono);
+  color: var(--ael-accent);
+  font-variant-numeric: tabular-nums;
+}

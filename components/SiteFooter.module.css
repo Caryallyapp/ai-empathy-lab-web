@@ -1,0 +1,140 @@
+.footer {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: 0.5rem;
+  overflow: hidden;
+}
+
+/* Interior scaled to the wide card: 16px links on a ~40px row pitch,
+   full-size padding. A large container with small, tight type inside is
+   what reads as cramped — the air has to be in the rhythm, not just the
+   width. */
+.card {
+  background: var(--ael-bg-surface);
+  border: 1px solid var(--ael-border-hairline);
+  border-radius: var(--ael-radius-panel);
+  box-shadow: var(--ael-shadow-sm);
+  padding: clamp(2.5rem, 4.5vw, 4rem) clamp(2rem, 5vw, 5rem);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.col {
+  display: grid;
+  gap: 1.35rem;
+  align-content: start;
+  justify-items: start;
+}
+
+.colTitle {
+  font: 600 0.78rem/1.3 var(--ael-font-mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ael-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.colLink {
+  font: 400 1rem/1.4 var(--ael-font-text);
+  color: var(--ael-text-secondary);
+  text-decoration: none;
+  transition: color var(--ael-dur-micro) var(--ael-ease);
+  /* Grown hit area, unchanged rhythm: the padding lifts the tap target from
+     22px to 41px (WCAG 2.5.8 wants 24 minimum, platforms want ~44) and the
+     negative margin gives almost all of it back. */
+  padding-block: 0.6rem;
+  margin-block: -0.5rem;
+}
+
+.colLink:hover {
+  color: var(--ael-text-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bottom {
+  margin-top: clamp(2.25rem, 4vw, 3.25rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--ael-rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font: 400 0.95rem/1.5 var(--ael-font-text);
+  color: var(--ael-text-muted);
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ael-radius-control);
+  color: var(--ael-text-muted);
+  transition:
+    color var(--ael-dur-micro) var(--ael-ease),
+    background-color var(--ael-dur-micro) var(--ael-ease);
+}
+
+.social:hover {
+  color: var(--ael-text-link);
+  background: var(--ael-bg-sunken);
+}
+
+/* ── The giant ghost wordmark, on the page ground ──
+   Sized to span the shell exactly, so its edges align with the card above.
+   The lockup's width is em-proportional: measured 7.891x the font size,
+   so font-size = container width / 7.891 (with 0.5% rounding safety). */
+.wmShell {
+  container-type: inline-size;
+}
+.watermark {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.2em;
+  margin-top: clamp(4.5rem, 10vw, 8rem);
+  padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+  /* Fallback first: browsers without container-query units (iOS < 16,
+     Chrome < 105) read the vw approximation; the cqw line wins elsewhere. */
+  font-size: clamp(2.4rem, 9.3vw, 9.6rem);
+  font-size: calc(100cqw / 7.93);
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+
+.watermarkText {
+  font-family: var(--ael-font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--ael-border-strong);
+  text-transform: lowercase;
+}
+
+.watermarkMark {
+  height: 0.72em;
+  width: auto;
+  flex: none;
+  align-self: baseline;
+}
+
+/* Graded ink tints from the border ramp: the mono cut of the mark. */
+.wmBack { fill: var(--ael-border-hairline); }
+.wmMid { fill: var(--ael-border-strong); }
+.wmFront { fill: var(--ael-border-input); }
+
+@media (max-width: 640px) {
+  .cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 420px) {
+  .cols {
+    grid-template-columns: 1fr;
+  }
+}

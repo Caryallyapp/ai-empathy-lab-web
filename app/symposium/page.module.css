@@ -1,0 +1,23 @@
+.tba {
+  font: 500 0.85rem/1.5 var(--ael-font-mono);
+  color: var(--ael-text-muted);
+}
+/* Closing call: centred inside the initiative's own tinted panel — the
+   same surface as its card on the home page, so page and card share an
+   identity. */
+.cta {
+  justify-items: center;
+  display: grid;
+  gap: 0.85rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--ael-iris-100) 0%, var(--ael-iris-50) 100%);
+  border: 1px solid var(--ael-iris-200);
+  border-radius: var(--ael-radius-panel);
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+}
+.cta :global(.btn) {
+  margin-top: 1.4rem;
+}
+.ctaBody {
+  color: var(--ael-text-secondary);
+}

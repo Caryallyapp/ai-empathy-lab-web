@@ -1,0 +1,161 @@
+/* ── Home hero ── */
+.hero {
+  position: relative;
+  background: var(--ael-gradient-veil);
+  overflow: hidden;
+}
+.heroInner {
+  position: relative;
+  z-index: 1;
+  padding-block: calc(var(--ael-nav-clearance) + clamp(3rem, 9vw, 6.5rem))
+    clamp(3rem, 8vw, 5.5rem);
+  display: grid;
+  gap: 1.6rem;
+  justify-items: start;
+}
+.heroTitle {
+  font: 700 clamp(2.8rem, 6vw, 4.6rem)/1.04 var(--ael-font-display);
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+  max-width: 21ch;
+}
+.heroLede {
+  font: var(--ael-text-body-lg);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  color: var(--ael-text-secondary);
+  max-width: 52ch;
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+/* Partners: the closing acknowledgment, the way a paper ends with its
+   funding note. Heading and cells are the shared section-head and
+   PartnerLogos; this only sets the space around the whole thing. */
+.partners {
+  padding-block: clamp(3.5rem, 8vw, 6rem) clamp(2rem, 5vw, 3.5rem);
+}
+
+
+/* The solid mark, large, as the hero's grounded moment — fully in view,
+   feet standing on the hero's bottom edge, right edge on the content
+   grid. The mark is never cropped, same as everywhere else it appears. */
+.heroMark {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 2.5rem);
+  bottom: 0;
+  width: clamp(240px, 26vw, 420px);
+  height: auto;
+  z-index: 0;
+}
+@media (max-width: 900px) {
+  .heroMark {
+    display: none;
+  }
+}
+
+/* ── Home sections ── */
+.section {
+  padding-block: clamp(3.25rem, 7.5vw, 5.75rem);
+}
+.paperGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  /* equal rows: every card takes the height of the tallest one */
+  grid-auto-rows: 1fr;
+  gap: 1.25rem;
+}
+/* Cards sit inside reveal wrappers; the wrapper stretches to the row's
+   height, and this makes the card fill it — cards in a row stay equal. */
+.paperGrid > div {
+  display: grid;
+}
+
+/* About teaser: heading | body split across the full measure.
+   THE PAGE SEAM: every two-column section (paper cards, this split, the
+   initiative teasers) uses equal columns with the same 1.25rem gutter, so
+   their internal boundaries fall on one vertical line down the page. */
+.aboutSplit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: 2rem 1.25rem;
+  align-items: start;
+}
+.aboutHead {
+  display: grid;
+  gap: 0.5rem;
+}
+/* ── Initiatives ── */
+.initGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: 1.25rem;
+}
+/* Initiative cards: the page's two highlighted moments, as a MATCHED
+   pair — one per brand hue at equal visual weight, on the TINT end of the
+   ramps (the deep versions read too heavy on this calm page). Ink text,
+   hue-matched border and chip per card; construction identical. All
+   values are kit primitives — indigo-50/100/200, iris-50/100/200. */
+.initCard {
+  height: 100%;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  border-radius: var(--ael-radius-panel);
+  padding: 2rem;
+  min-height: 232px;
+  text-decoration: none;
+  color: var(--ael-text-primary);
+  transition:
+    box-shadow var(--ael-dur-standard) var(--ael-ease),
+    transform var(--ael-dur-standard) var(--ael-ease);
+}
+.initCard:hover {
+  box-shadow: var(--ael-shadow-md);
+  transform: translateY(-3px);
+}
+.initIndigo {
+  background: linear-gradient(135deg, var(--ael-indigo-100) 0%, var(--ael-indigo-50) 100%);
+  border: 1px solid var(--ael-indigo-200);
+}
+.initIris {
+  background: linear-gradient(135deg, var(--ael-iris-100) 0%, var(--ael-iris-50) 100%);
+  border: 1px solid var(--ael-iris-200);
+}
+.initChipRow {
+  display: flex;
+}
+/* On the tinted washes the tag chips' own tints would vanish into the
+   card; a white pill keeps the status legible on both hues. */
+.initCard .initChipRow :global(.chip) {
+  background: var(--ael-bg-surface);
+}
+.initTitle {
+  font: 600 1.45rem/1.2 var(--ael-font-display);
+  letter-spacing: -0.01em;
+}
+.initBody {
+  font: var(--ael-text-small);
+  color: var(--ael-text-secondary);
+  max-width: 46ch;
+}
+.initGo {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: 500 0.9rem/1 var(--ael-font-text);
+}
+.initIndigo .initGo {
+  color: var(--ael-text-link);
+}
+.initIris .initGo {
+  color: var(--ael-text-accent-violet);
+}
+
+/* Reveal wrappers must pass the row height through to the cards. */
+.initGrid > div {
+  display: grid;
+}

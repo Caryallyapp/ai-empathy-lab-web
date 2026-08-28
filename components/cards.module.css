@@ -1,0 +1,362 @@
+/* Shared content components: question rows, publication cards & items,
+   team cards, news rows. One module — these travel together. */
+
+/* ── Question rows ── */
+.qList {
+  display: grid;
+}
+/* ── The list-row grammar ──
+   Every list section on the site (research questions, news, publications)
+   shares one skeleton so the pages read as one system:
+     [meta 11.5rem] [primary 1.2fr] [support 0.9fr] [action 20px]
+   Meta rails align across sections; hierarchy differs only by type size.
+   Rows align on first TEXT BASELINES (align-items: baseline) — never
+   approximated with padding offsets. A support column exists only where
+   its content is ALWAYS present; optional content stacks inside the
+   primary cell (a sometimes-empty column reads as broken, not aligned).
+   Text-bearing chips sit on the row baseline; textless boxes (arrows)
+   self-centre. Each row draws ONLY a top rule: a closing rule on the last
+   row boxes in a one-item list and doubles up wherever a list is followed
+   by another ruled block. The action track is a FIXED 20px, never `auto`: a row
+   whose item has no link renders no arrow, and an auto track would
+   collapse there and hand its width to the fr columns, sliding that one
+   row's support rail out of line. Below 1000px every row stacks the
+   same way. */
+.qRow {
+  display: grid;
+  grid-template-columns: 11.5rem minmax(0, 1.2fr) minmax(0, 0.9fr) 20px;
+  grid-template-areas: "name question summary arrow";
+  gap: 1rem clamp(1.75rem, 3.5vw, 3.5rem);
+  align-items: baseline;
+  border-top: 1px solid var(--ael-rule);
+  padding-block: 2.1rem;
+  text-decoration: none;
+}
+.qName {
+  grid-area: name;
+  font: 500 0.75rem/1.4 var(--ael-font-mono);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ael-text-muted);
+}
+.qQuestion {
+  grid-area: question;
+  font: 600 clamp(1.3rem, 2vw, 1.55rem)/1.3 var(--ael-font-display);
+  letter-spacing: -0.01em;
+  color: var(--ael-text-primary);
+  text-wrap: balance;
+  transition: color var(--ael-dur-micro) var(--ael-ease);
+}
+.qSummary {
+  grid-area: summary;
+  font: var(--ael-text-small);
+  color: var(--ael-text-secondary);
+}
+.qArrow {
+  grid-area: arrow;
+  align-self: center;
+  color: var(--ael-text-muted);
+  transition:
+    transform var(--ael-dur-micro) var(--ael-ease),
+    color var(--ael-dur-micro) var(--ael-ease);
+}
+.qRow:hover .qQuestion {
+  color: var(--ael-accent);
+}
+.qRow:hover .qArrow {
+  color: var(--ael-accent);
+  transform: translateX(4px);
+}
+
+/* ── Working-paper cards ── */
+.pubCard {
+  position: relative;
+  background: var(--ael-bg-surface);
+  border: 1px solid var(--ael-border-hairline);
+  border-radius: var(--ael-radius-card);
+  padding: 1.6rem 1.75rem;
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  box-shadow: var(--ael-shadow-sm);
+  transition:
+    box-shadow var(--ael-dur-standard) var(--ael-ease),
+    border-color var(--ael-dur-standard) var(--ael-ease),
+    transform var(--ael-dur-standard) var(--ael-ease);
+}
+.pubCard:hover {
+  box-shadow: var(--ael-shadow-md);
+  border-color: var(--ael-border-strong);
+  transform: translateY(-3px);
+}
+.pubKind {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.pubVenue {
+  font: 500 0.75rem/1 var(--ael-font-mono);
+  color: var(--ael-text-muted);
+  letter-spacing: 0.05em;
+}
+.pubTitle {
+  font: 600 1.0625rem/1.5 var(--ael-font-text);
+  letter-spacing: -0.005em;
+}
+.pubTitle a {
+  color: inherit;
+  text-decoration: none;
+}
+/* The whole card is the link target. */
+.pubTitle a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--ael-radius-card);
+}
+.pubCard:hover .pubTitle a {
+  color: var(--ael-text-link);
+}
+.pubAuthors {
+  font: var(--ael-text-small);
+  color: var(--ael-text-muted);
+}
+
+/* ── Selected-publication rows ── */
+/* Same interaction as a question row: the whole row is the hit area and
+   the whole row responds. The link stays on the title so a screen reader
+   announces the paper, not the paper plus its authors and venue. */
+.pubItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 11.5rem minmax(0, 1.2fr) minmax(0, 0.9fr) 20px;
+  grid-template-areas: "meta main venue go";
+  gap: 1rem clamp(1.75rem, 3.5vw, 3.5rem);
+  align-items: baseline;
+  border-top: 1px solid var(--ael-rule);
+  padding-block: 1.6rem;
+}
+.pubItemMeta {
+  grid-area: meta;
+  font: 500 0.78rem/1.6 var(--ael-font-mono);
+  color: var(--ael-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.pubItemMain {
+  grid-area: main;
+  display: grid;
+  gap: 0.35rem;
+}
+.pubItemAuthors {
+  font: var(--ael-text-small);
+  color: var(--ael-text-muted);
+}
+.pubItemTitle {
+  font: 500 1.0625rem/1.5 var(--ael-font-text);
+}
+.pubItemTitle a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--ael-dur-micro) var(--ael-ease);
+}
+.pubItemTitle a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.pubItem:hover .pubItemTitle a {
+  color: var(--ael-accent);
+}
+.pubItemVenue {
+  grid-area: venue;
+  font: var(--ael-text-small);
+  color: var(--ael-text-secondary);
+}
+.pubItemGo {
+  grid-area: go;
+  align-self: center;
+  color: var(--ael-text-muted);
+  transition:
+    transform var(--ael-dur-micro) var(--ael-ease),
+    color var(--ael-dur-micro) var(--ael-ease);
+}
+/* Diagonal, so it travels diagonally — the question rows' straight arrow
+   slides along x. Shape is the only difference between the two, and it
+   carries meaning: straight goes to another page here, diagonal leaves
+   the site. */
+.pubItem:hover .pubItemGo {
+  color: var(--ael-accent);
+  transform: translate(3px, -3px);
+}
+
+/* ── Team cards ──
+   Portrait, name, affiliation, and nothing else. The bios run several
+   hundred words each; eight of them side by side read as a wall rather
+   than as people, so the full profile gets its own page and the whole
+   card is the way in. */
+.teamCard {
+  position: relative;
+  background: var(--ael-bg-surface);
+  border: 1px solid var(--ael-border-hairline);
+  border-radius: var(--ael-radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--ael-shadow-sm);
+  transition:
+    box-shadow var(--ael-dur-standard) var(--ael-ease),
+    border-color var(--ael-dur-standard) var(--ael-ease),
+    transform var(--ael-dur-standard) var(--ael-ease);
+}
+.teamCard:hover {
+  box-shadow: var(--ael-shadow-md);
+  border-color: var(--ael-border-strong);
+  transform: translateY(-3px);
+}
+.teamPhoto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: var(--ael-bg-sunken);
+}
+/* Anyone without a photo gets their initials on their brand tag colour —
+   a valid state, not a gap where a face should be. */
+.teamPhotoFallback {
+  display: grid;
+  place-items: center;
+  font: 600 2.75rem/1 var(--ael-font-display);
+}
+.teamBody {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.3rem 1.4rem 1.5rem;
+}
+.teamName {
+  font: 600 1.4rem/1.25 var(--ael-font-display);
+  letter-spacing: -0.015em;
+  transition: color var(--ael-dur-micro) var(--ael-ease);
+}
+.teamName a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+/* The whole card is the link target. */
+.teamName a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.teamGo {
+  flex: none;
+  color: var(--ael-text-muted);
+  transition:
+    transform var(--ael-dur-micro) var(--ael-ease),
+    color var(--ael-dur-micro) var(--ael-ease);
+}
+.teamCard:hover .teamName {
+  color: var(--ael-accent);
+}
+.teamCard:hover .teamGo {
+  color: var(--ael-accent);
+  transform: translateX(4px);
+}
+.teamAff {
+  font: var(--ael-text-small);
+  color: var(--ael-text-muted);
+}
+
+/* ── News rows ── */
+.newsItem {
+  display: grid;
+  grid-template-columns: 11.5rem minmax(0, 1fr) auto;
+  grid-template-areas: "date main tag";
+  gap: 1rem clamp(1.75rem, 3.5vw, 3.5rem);
+  align-items: baseline;
+  border-top: 1px solid var(--ael-rule);
+  padding-block: 1.4rem;
+}
+.newsDate {
+  grid-area: date;
+  font: 500 0.78rem/1.6 var(--ael-font-mono);
+  color: var(--ael-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.newsMain {
+  grid-area: main;
+  display: grid;
+  gap: 0.35rem;
+}
+.newsTitle {
+  font: 500 1rem/1.5 var(--ael-font-text);
+}
+.newsTitle a {
+  color: inherit;
+  text-decoration: none;
+}
+.newsTitle a:hover {
+  color: var(--ael-text-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.newsExt {
+  display: inline-block;
+  vertical-align: -0.12em;
+  margin-left: 0.25rem;
+  color: var(--ael-text-muted);
+}
+.newsBody {
+  font: var(--ael-text-small);
+  color: var(--ael-text-secondary);
+  max-width: 60ch;
+}
+.newsItem > span[class*="chip"] {
+  grid-area: tag;
+  justify-self: end;
+  /* chips carry text, so they sit on the row's first baseline — one
+     consistent line down the right edge */
+  align-self: baseline;
+}
+
+
+
+/* Below ~1000px the meta columns would crowd; every grammar row stacks. */
+@media (max-width: 1000px) {
+  .newsItem,
+  .pubItem {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: none;
+    gap: 0.4rem 1rem;
+  }
+  .newsDate, .newsMain, .pubItemMeta, .pubItemMain, .pubItemVenue {
+    grid-area: auto;
+    grid-column: 1;
+    padding-top: 0;
+  }
+  .newsItem > span[class*="chip"], .pubItemGo {
+    grid-area: auto;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .qRow {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "name arrow"
+      "question arrow"
+      "summary arrow";
+    gap: 0.5rem 1.5rem;
+    align-items: center;
+    padding-block: 1.75rem;
+  }
+  .qName,
+  .qSummary {
+    padding-top: 0;
+  }
+  .qQuestion {
+    max-width: 36ch;
+  }
+}

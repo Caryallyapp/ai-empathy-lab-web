@@ -1,0 +1,166 @@
+/* ============================================================
+   AI Empathy Lab — design tokens (brand kit v1.4, light theme)
+   Structure: primitives (--ael-<ramp>-<step>) → semantic (--ael-<role>).
+   Vendored from ../ai-empathy-lab-brand/tokens.css — the kit remains the
+   source of truth; re-vendor deliberately when it versions up.
+   Contrast: every text token meets WCAG 2.2 AA on its stated ground.
+   ============================================================ */
+
+:root {
+  /* ── Primitives: Indigo (primary hue — periwinkle → deep indigo) ── */
+  --ael-indigo-50:  #F0F3FD;
+  --ael-indigo-100: #E3E9FB;
+  --ael-indigo-200: #C9D4F7;
+  --ael-indigo-300: #A6B7F1;
+  --ael-indigo-400: #7B90E8;
+  --ael-indigo-500: #5B74E8;  /* brand periwinkle — large UI, illustration */
+  --ael-indigo-600: #4056C8;  /* interactive: links, buttons, focus */
+  --ael-indigo-700: #3A45C0;  /* logo front arch; hover of 600 */
+  --ael-indigo-800: #2E3695;
+  --ael-indigo-900: #232866;
+
+  /* ── Primitives: Iris (violet accent) ── */
+  --ael-iris-50:  #F5F2FE;
+  --ael-iris-100: #EBE5FD;
+  --ael-iris-200: #D8CDFA;
+  --ael-iris-300: #BCA8F5;
+  --ael-iris-400: #A488EE;
+  --ael-iris-500: #9080E8;   /* logo middle arch */
+  --ael-iris-600: #7E5BD8;
+  --ael-iris-700: #6D4FC4;   /* text-safe violet */
+  --ael-iris-800: #533B96;
+  --ael-iris-900: #3B2A6B;
+
+  /* ── Primitives: Mist (blue-biased neutrals) ── */
+  --ael-white:    #FFFFFF;
+  --ael-mist-50:  #F8FAFD;
+  --ael-mist-100: #F4F6FB;   /* the brand ground — never pure white pages */
+  --ael-mist-150: #EDF1F8;
+  --ael-mist-200: #E3E8F2;
+  --ael-mist-300: #CBD3E4;
+  --ael-mist-400: #AAB4CC;
+  --ael-mist-500: #8791AC;
+  --ael-mist-600: #606A85;
+  --ael-mist-700: #4A5468;
+  --ael-mist-800: #303950;
+  --ael-mist-900: #1C2433;   /* ink */
+
+  /* ── Primitives: functional hues ── */
+  --ael-green-600:  #1F7A4D;  --ael-green-100:  #E3F3EA;
+  --ael-amber-600:  #9A6210;  --ael-amber-100:  #FBF0DA;
+  --ael-red-600:    #C03A3A;  --ael-red-100:    #FBE7E7;
+  --ael-blue-600:   #3565C0;  --ael-blue-100:   #E5EEFB;
+
+  /* ── Typography ── */
+  --ael-font-display: "League Spartan", "Helvetica Neue", Arial, sans-serif;
+  --ael-font-text:    "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ael-font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* type scale — marketing site */
+  --ael-text-display: 700 clamp(2.75rem, 6vw, 4rem)/1.05 var(--ael-font-display);
+  --ael-text-h1:      600 2.5rem/1.15  var(--ael-font-display);
+  --ael-text-h2:      600 1.75rem/1.25 var(--ael-font-display);
+  --ael-text-h3:      600 1.3125rem/1.35 var(--ael-font-display);
+  --ael-text-body-lg: 400 1.125rem/1.6 var(--ael-font-text);
+  --ael-text-body:    400 1rem/1.6     var(--ael-font-text);
+  --ael-text-small:   400 0.875rem/1.5 var(--ael-font-text);
+  --ael-text-overline:600 0.78rem/1.3  var(--ael-font-text); /* + uppercase + .08em */
+
+  /* ── Space, radius, elevation, motion ── */
+  --ael-space-1: 4px;  --ael-space-2: 8px;  --ael-space-3: 12px;
+  --ael-space-4: 16px; --ael-space-5: 24px; --ael-space-6: 32px;
+  --ael-space-7: 48px; --ael-space-8: 64px; --ael-space-9: 96px;
+
+  --ael-radius-control: 10px;  /* buttons, inputs, selects */
+  --ael-radius-card:    16px;
+  --ael-radius-panel:   20px;
+  --ael-radius-pill:    999px;
+
+  --ael-shadow-sm: 0 1px 2px rgba(16, 20, 31, .06);
+  --ael-shadow-md: 0 4px 16px rgba(35, 40, 102, .08);
+  --ael-shadow-lg: 0 12px 32px rgba(35, 40, 102, .12);
+
+  --ael-ease: cubic-bezier(.25,.5,.25,1);
+  --ael-dur-micro: 150ms; --ael-dur-standard: 300ms; --ael-dur-entrance: 500ms;
+
+  /* ── Semantic ── */
+  color-scheme: light;
+  --ael-bg-page:        var(--ael-mist-100);
+  --ael-bg-elevated:    var(--ael-mist-50);
+  --ael-bg-surface:     var(--ael-white);
+  --ael-bg-sunken:      var(--ael-mist-150);
+
+  --ael-text-primary:   var(--ael-mist-900);  /* 14.4:1 on page */
+  --ael-text-secondary: var(--ael-mist-700);  /*  7.0:1 on page */
+  --ael-text-muted:     var(--ael-mist-600);  /*  5.0:1 on page */
+  --ael-text-on-accent: var(--ael-white);
+  --ael-text-link:      var(--ael-indigo-600);/*  5.7:1 on page */
+  --ael-text-accent-violet: var(--ael-iris-700);
+
+  --ael-accent:         var(--ael-indigo-600);
+  --ael-accent-hover:   var(--ael-indigo-700);
+  --ael-accent-soft:    var(--ael-indigo-100);
+  --ael-accent-muted:   var(--ael-indigo-500); /* decorative / large shapes */
+
+  --ael-border-hairline: var(--ael-mist-200);
+  --ael-border-strong:   var(--ael-mist-300);
+  --ael-border-input:    var(--ael-mist-400);
+  --ael-focus-ring:      var(--ael-indigo-600);
+
+  --ael-status-success:      var(--ael-green-600);
+  --ael-status-success-bg:   var(--ael-green-100);
+  --ael-status-warning:      var(--ael-amber-600);
+  --ael-status-warning-bg:   var(--ael-amber-100);
+  --ael-status-error:        var(--ael-red-600);
+  --ael-status-error-bg:     var(--ael-red-100);
+  --ael-status-info:         var(--ael-blue-600);
+  --ael-status-info-bg:      var(--ael-blue-100);
+  --ael-status-neutral:      #4A5468;
+  --ael-status-neutral-bg:   #EDF1F8;
+
+  /* ── Data visualization (validated: CVD + contrast) ── */
+  --ael-chart-surface: var(--ael-white);
+  --ael-chart-1: #3A57A5;  /* blue      */
+  --ael-chart-2: #C07023;  /* orange    */
+  --ael-chart-3: #159E7B;  /* teal      */
+  --ael-chart-4: #7A5BD0;  /* violet    */
+  --ael-chart-5: #D9739F;  /* rose      */
+  --ael-chart-6: #6E7B2A;  /* olive     */
+  --ael-chart-grid:     var(--ael-mist-200);
+  --ael-chart-axis:     var(--ael-mist-400);
+
+  /* ── Tags ── */
+  --ael-tag-indigo: #33409E; --ael-tag-indigo-bg: #E3E9FB;
+  --ael-tag-iris:   #5A3FA8; --ael-tag-iris-bg:   #EBE5FD;
+  --ael-tag-teal:   #0E6B54; --ael-tag-teal-bg:   #D9F0E8;
+  --ael-tag-amber:  #7A4E0D; --ael-tag-amber-bg:  #FAEED6;
+  --ael-tag-rose:   #A03360; --ael-tag-rose-bg:   #FAE3EE;
+  --ael-tag-sky:    #175E8C; --ael-tag-sky-bg:    #DEF0FA;
+  --ael-tag-olive:  #55601F; --ael-tag-olive-bg:  #EDF2D5;
+  --ael-tag-slate:  #454F63; --ael-tag-slate-bg:  #E9EDF5;
+
+  /* ── Brand gradients + grain ── */
+  --ael-gradient-aurora: linear-gradient(135deg, #A6B7F1 0%, #8A9AF0 34%, #9080E8 68%, #BCA8F5 100%);
+  --ael-gradient-veil:   linear-gradient(160deg, #F4F6FB 0%, #ECEFFA 55%, #F1EDFC 100%);
+  --ael-gradient-deep:   linear-gradient(135deg, #232866 0%, #3A45C0 55%, #533B96 100%);
+  --ael-grain-opacity: 0.06; /* band 0.04–0.08; large decorative surfaces only */
+
+  /* ── Overlay, z-ladder, control heights ── */
+  --ael-backdrop: rgba(16, 20, 31, .45);
+  --ael-z-dropdown: 40; --ael-z-sticky: 50; --ael-z-modal: 60; --ael-z-toast: 70;
+  --ael-control-h-sm: 36px; --ael-control-h-platform: 40px; --ael-control-h-md: 44px; --ael-control-h-lg: 48px;
+}
+
+/* ── Base affordances every AEL property ships with ── */
+:focus-visible {
+  outline: 2px solid var(--ael-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
