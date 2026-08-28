@@ -1,7 +1,10 @@
 /** Global site facts. Everything participant-visible on every page reads from here. */
 export const SITE = {
   name: "AI Empathy Lab",
-  url: "https://aiempathylab.com",
+  /* The canonical host is www: the apex 308-redirects to it in Vercel, so
+     canonicals, og:url, the sitemap and robots.txt must all name the URL
+     that actually serves, not the one that bounces. */
+  url: "https://www.aiempathylab.com",
   platformUrl: "https://app.aiempathylab.com",
   /**
    * As a sentence (prose, OG card) the tagline keeps its period; in display
