@@ -11,7 +11,17 @@ import { NEWS } from "@/content/news";
 import { WORKING_PAPERS } from "@/content/publications";
 import { RESEARCH_PROJECTS } from "@/content/research";
 import { SITE } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 import styles from "./page.module.css";
+
+/* The home page had no metadata of its own, so it inherited the layout's,
+   which carries no `alternates` — leaving the site's most linked page as
+   the only one without a canonical URL or an og:url. */
+export const metadata = pageMetadata({
+  title: "AI Empathy Lab | Research in Empathic Human-AI Interaction",
+  description: SITE.description,
+  path: "/",
+});
 
 function delay(ms: number): CSSProperties {
   return { "--reveal-delay": `${ms}ms` } as CSSProperties;
