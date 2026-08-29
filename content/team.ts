@@ -108,8 +108,8 @@ export const TEAM: Person[] = [
   {
     id: "amani-alabed",
     name: "Dr. Amani Alabed",
-    role: "Director",
-    group: "directors",
+    role: "Research Scientist",
+    group: "scientists",
     affiliation:
       "Assistant Professor of Digital Marketing, University of Doha for Science and Technology",
     bio: "Amani Alabed is Assistant Professor of Digital Marketing at the University of Doha for Science and Technology, Qatar. She earned her PhD from Newcastle University, where her research pioneered the study of consumer-AI relationships through the lens of the self-concept. Her work explores how conversational AI shapes consumer behavior, with a focus on AI anthropomorphism, self-congruence, and the bonds consumers form with AI agents, and what these mean for well-being. Her research has been published in Technological Forecasting and Social Change and the European Journal of Marketing, and she is a frequent speaker on the ethical, human-centered use of AI.",
