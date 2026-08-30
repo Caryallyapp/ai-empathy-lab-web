@@ -14,6 +14,9 @@
  *   photo-6  Jeff Brooks       jeffreyallenbrooks.github.io
  *   photo-7  Danylo Provodov   confirmed by Danylo
  *   photo-8  Illia Orel        supplied directly by Danylo
+ *   photo-10 Yasmeen Masalmeh  supplied by Yasmeen via Danylo
+ * photo-7 and photo-8 were later replaced by Danylo with better originals;
+ * photo-9 is deliberately unused, so the numbering matches what he sent.
  * Do NOT reorder these by the document's image order: the images are NOT
  * stored in team order, which is what produced an earlier wrong mapping.
  * Sources are public/team/photo-1.jpg … photo-7.jpg, square-cropped from
@@ -30,13 +33,18 @@ const PHOTO_BY_ID: Record<string, string> = {
   "jeff-brooks": "/team/photo-6.jpg",
   "danylo-provodov": "/team/photo-7.jpg",
   "illia-orel": "/team/photo-8.jpg",
+  "yasmeen-masalmeh": "/team/photo-10.jpg",
 };
 
 /** The photo for a person, or undefined so the card falls back to initials. */
 export function photoFor(id: string): string | undefined {
   return PHOTO_BY_ID[id];
 }
-export type TeamGroup = "directors" | "scientists" | "engineering";
+export type TeamGroup =
+  | "directors"
+  | "scientists"
+  | "engineering"
+  | "assistants";
 
 export interface TeamLink {
   label: string;
@@ -222,12 +230,38 @@ export const TEAM: Person[] = [
     placeholder: true,
     hue: "slate",
   },
+  {
+    id: "yasmeen-masalmeh",
+    name: "Yasmeen Masalmeh",
+    role: "Research Assistant",
+    group: "assistants",
+    affiliation:
+      "Industrial Engineering student, American University of Bahrain",
+    bio: "Yasmeen Masalmeh is a Research Assistant at the AI Empathy Lab and an Industrial Engineering student at the American University of Bahrain. She enjoys working on problems that combine structured thinking with a strong focus on system optimization and improvement. Her work at the lab focuses on optimizing and reviewing AI systems, evaluating their performance and identifying areas for improvement, an area she is exploring further in a research paper. Alongside her engineering studies, Yasmeen has a strong interest in UI/UX, data science, and graphic design. She is especially interested in building strategically designed systems that always keep the user in mind.",
+    // Unlike the others, her submission carried no "Research focus" line;
+    // these are lifted from her own bio rather than supplied, so they are
+    // hers to correct.
+    focus: [
+      "System optimization",
+      "AI system evaluation",
+      "UI/UX",
+      "Data science",
+    ],
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/yasmeen-masalmeh/",
+      },
+    ],
+    hue: "iris",
+  },
 ];
 
 export const TEAM_GROUPS: { key: TeamGroup; title: string }[] = [
   { key: "directors", title: "Directors" },
   { key: "scientists", title: "Research Scientists" },
   { key: "engineering", title: "Engineering" },
+  { key: "assistants", title: "Research Assistants" },
 ];
 
 export function personById(id: string): Person | undefined {
