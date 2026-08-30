@@ -10,7 +10,7 @@ import styles from "./partners.module.css";
  * partners section, so the two can never drift apart.
  */
 const PARTNERS = [
-  { src: "/partners/uzh-foundation.svg", alt: "UZH Foundation", height: 52 },
+  { src: "/partners/uzh.svg", alt: "University of Zurich", height: 56 },
   {
     src: "/partners/eth-zurich.svg",
     alt: "MTEC Foundation (ETH Zurich)",
