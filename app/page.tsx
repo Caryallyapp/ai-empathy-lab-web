@@ -55,6 +55,36 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── About teaser: heading column left, body column right — the
+             split fills the measure with existing content only. ── */}
+      <section className={`${styles.section} band-rule`}>
+        <div className={`container ${styles.aboutSplit}`} data-reveal>
+          <div className={styles.aboutHead}>
+            <h2 className="t-h2">How we work</h2>
+          </div>
+          <div className="prose">
+            <p className="t-lead">
+              The AI Empathy Lab brings together a new generation of academics
+              to investigate how empathic AI, in the form of assistants,
+              agents, and companions, shapes consumer behavior.
+            </p>
+            <p>
+              Our approach is distinctly experimental, and our medium is the
+              voice. We conduct controlled experiments with real, working AI
+              agents and systematically manipulate the dimensions of their
+              behavior that matter most: the empathy they express, the
+              persuasive strategies they employ, and their capacity to
+              remember.
+            </p>
+            <p>
+              <Link href="/about/" className="link-arrow">
+                About the lab <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── The five questions ── */}
       <section className={styles.section}>
         <div className="container" data-reveal>
@@ -88,36 +118,6 @@ export default function HomePage() {
                 <PublicationCard publication={paper} />
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── About teaser: heading column left, body column right — the
-             split fills the measure with existing content only. ── */}
-      <section className={`${styles.section} band-rule`}>
-        <div className={`container ${styles.aboutSplit}`} data-reveal>
-          <div className={styles.aboutHead}>
-            <h2 className="t-h2">A new generation of academics</h2>
-          </div>
-          <div className="prose">
-            <p className="t-lead">
-              The AI Empathy Lab brings together a new generation of academics
-              to investigate how empathic AI, in the form of assistants,
-              agents, and companions, shapes consumer behavior.
-            </p>
-            <p>
-              Our approach is distinctly experimental, and our medium is the
-              voice. We conduct controlled experiments with real, working AI
-              agents and systematically manipulate the dimensions of their
-              behavior that matter most: the empathy they express, the
-              persuasive strategies they employ, and their capacity to
-              remember.
-            </p>
-            <p>
-              <Link href="/about/" className="link-arrow">
-                About the lab <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-            </p>
           </div>
         </div>
       </section>
